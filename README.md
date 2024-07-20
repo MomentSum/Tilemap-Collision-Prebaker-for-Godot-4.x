@@ -1,9 +1,9 @@
 # Godot 4.x TileMapCollisionPrebaker
 
 #### 介绍
-适用于Godot 4.x 的TileMap碰撞预烘培器.旨在避免一些奇怪的bug,比如RigidBody2D在TileMap地面上移动时会时不时受阻(https://github.com/godotengine/godot/issues/47148).
-其实Github上已经有一个类似的工具了:https://github.com/popcar2/GodotTilemapBaker
-不过似乎有点简陋:完全无视PhysicsLayer和TileSet中TileData的Collision Polygon,所以就自己重新实现了一个更完善的.
+适用于Godot 4.x 的TileMap碰撞预烘培器.旨在避免一些奇怪的bug,比如RigidBody2D在TileMap地面上移动时会时不时受阻(https://github.com/godotengine/godot/issues/47148).<br>
+其实Github上已经有一个类似的工具了:https://github.com/popcar2/GodotTilemapBaker<br>
+不过似乎有点简陋:完全无视PhysicsLayer和TileSet中TileData的Collision Polygon,所以就自己重新实现了一个更完善的,
 可以烘培所有Layer和PhysicsLayer.
 
 #### 安装教程
