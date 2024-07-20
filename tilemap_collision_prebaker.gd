@@ -63,9 +63,14 @@ func bake_physics_layer_colliders(tilemap:TileMap,layer:int,physics_layer:int,la
 	var node=StaticBody2D.new()
 	layer_node.add_child(node)
 	node.name="PhysicsLayer%d"%physics_layer
-	node.owner=layer_node.owner
-	node.collision_layer=tile_set.get_physics_layer_collision_layer(physics_layer)
-	node.collision_mask=tile_set.get_physics_layer_collision_mask(physics_layer)
+	node.owner=owner
+	# The changes of the properties of the node won't work unless it happens after the node's initialization.
+	node.ready.connect(func():
+		node.collision_layer=tile_set.get_physics_layer_collision_layer(physics_layer)
+		node.collision_mask=tile_set.get_physics_layer_collision_mask(physics_layer)
+		node.physics_material_override=tile_set.get_physics_layer_physics_material(physics_layer)
+	,CONNECT_ONE_SHOT)
+	
 	for polygon in merged_polygons:
 		var coll=CollisionPolygon2D.new()
 		coll.polygon=polygon
