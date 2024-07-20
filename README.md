@@ -11,7 +11,7 @@
 1.   在目标TileMap所在场景的任意地方,创建一个Node2D
 2.   把脚本挂载到上面
 3.   指定目标TileMap
-4.   
+[](http://![教程GIF](tutorial.gif))
 
 #### 使用说明
 
