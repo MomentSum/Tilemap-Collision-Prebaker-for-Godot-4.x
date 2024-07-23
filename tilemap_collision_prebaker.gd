@@ -23,7 +23,7 @@ class_name TileMapCollisionPreBaker
 
 
 ## Bake TileMap
-func bake_colliders(value:bool) -> void:
+func bake_colliders(_value:bool) -> void:
 	if not has_node(target_tilemap):
 		print("Target tilemap is missing")
 		return
@@ -64,12 +64,9 @@ func bake_physics_layer_colliders(tilemap:TileMap,layer:int,physics_layer:int,la
 	layer_node.add_child(node)
 	node.name="PhysicsLayer%d"%physics_layer
 	node.owner=owner
-	# The changes of the properties of the node won't work unless it happens after the node's initialization.
-	node.ready.connect(func():
-		node.collision_layer=tile_set.get_physics_layer_collision_layer(physics_layer)
-		node.collision_mask=tile_set.get_physics_layer_collision_mask(physics_layer)
-		node.physics_material_override=tile_set.get_physics_layer_physics_material(physics_layer)
-	,CONNECT_ONE_SHOT)
+	node.collision_layer=tile_set.get_physics_layer_collision_layer(physics_layer)
+	node.collision_mask=tile_set.get_physics_layer_collision_mask(physics_layer)
+	node.physics_material_override=tile_set.get_physics_layer_physics_material(physics_layer)
 	
 	for polygon in merged_polygons:
 		var coll=CollisionPolygon2D.new()
