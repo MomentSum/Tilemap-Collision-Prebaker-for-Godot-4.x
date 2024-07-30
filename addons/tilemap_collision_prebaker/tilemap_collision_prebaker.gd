@@ -16,12 +16,16 @@ class_name TileMapCollisionPreBaker
 ## Delete all children before baking
 @export var delete_children_before_bake:bool=true
 
+@export var sync_collision_layer_mask:bool=true
+
 ## Pseudo property. It's actually a button, click to bake TileMap
-@export var bake:bool=false:set=bake_colliders
+@export var bake:bool=false:
+	set(new):
+		bake_colliders()
 
 
 ## Bake TileMap
-func bake_colliders(_value:bool) -> void:
+func bake_colliders() -> void:
 	if not has_node(target_tilemap):
 		print("Target tilemap is missing")
 		return
@@ -62,8 +66,9 @@ func bake_physics_layer_colliders(tilemap:TileMap,layer:int,physics_layer:int,la
 	layer_node.add_child(node)
 	node.name="PhysicsLayer%d"%physics_layer
 	node.owner=owner
-	node.collision_layer=tile_set.get_physics_layer_collision_layer(physics_layer)
-	node.collision_mask=tile_set.get_physics_layer_collision_mask(physics_layer)
+	if sync_collision_layer_mask:
+		node.collision_layer=tile_set.get_physics_layer_collision_layer(physics_layer)
+		node.collision_mask=tile_set.get_physics_layer_collision_mask(physics_layer)
 	node.physics_material_override=tile_set.get_physics_layer_physics_material(physics_layer)
 	
 	for polygon in merged_polygons:
