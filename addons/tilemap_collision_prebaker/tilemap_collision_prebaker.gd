@@ -8,8 +8,6 @@ class_name TileMapCollisionPreBaker
 ##
 ## Change the value of bake to bake colliders.It will bake all the layers and physics layers 
 ## of the target tilemap.
-## 
-## By the way,I am delighted to anticipate the dawn of a day where this kind of tool will no longer be necessary in the future.
 
 
 ## TileMap for baking collision
